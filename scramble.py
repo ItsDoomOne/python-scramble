@@ -14,13 +14,13 @@ alpha = [ 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 
 
 
 def scramble(text, filename):
-	print text
+	print(text)
 	outFile = os.path.join(os.path.dirname(filename), "(scrambled)"+os.path.basename(filename)) 
 	for l in text:
 		text_array.append(l)
 	
 	edit_array = text_array
-	print edit_array
+	print(edit_array)
 	
 	for c in edit_array:
 		num = alpha.index(c)
@@ -29,8 +29,8 @@ def scramble(text, filename):
 
 	#print new_array
 	clean = str(new_array)
-	output = clean.translate(None, "[,]")
-	print output
+	output = clean.translate("[,]")
+	print(output)
 	oF = open(outFile, 'w')
 	oF.write(output)
 
@@ -41,8 +41,8 @@ def scramble(text, filename):
 def descramble(text):
 	#for l in text:
 	#	text_array.append(l)
-	new_array = text.translate(None, "[,]")
-	print "secret code: " + str(new_array)
+	new_array = text.translate("[,]")
+	print("secret code: " + str(new_array))
 	for d in new_array.split(' '):
 		intd = int(d)
 		index = alpha[intd]
@@ -50,16 +50,16 @@ def descramble(text):
 
 
 	output = ''.join(de_array)
-	print output
+	print(output)
 
-option = raw_input("Do you want to [S]cramble or [D]escramble? ")
+option = input("Do you want to [S]cramble or [D]escramble? ")
 if option == "scramble" or option == "S":
-	file_scram = raw_input("name of file to scramble: ")
+	file_scram = input("name of file to scramble: ")
 	f = open(file_scram, 'r')
 	text = f.read()
 	scramble(text, file_scram)
 elif option == "descramble" or option == "D":
-	file_scram = raw_input("name of the file to descramble: ")
+	file_scram = input("name of the file to descramble: ")
 	F = open(file_scram, 'r')
 	text = []
 	text = F.read()
