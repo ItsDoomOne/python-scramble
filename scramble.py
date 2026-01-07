@@ -26,31 +26,38 @@ def scramble(text, filename):
 		num = alpha.index(c)
 		new_array.append(num)
 
-
-	#print new_array
 	clean = str(new_array)
 	output = clean.translate("[,]")
 	print(output)
 	oF = open(outFile, 'w')
 	oF.write(output)
 
-
-
-
-##descramble portion
 def descramble(text):
-	#for l in text:
-	#	text_array.append(l)
 	new_array = text.translate("[,]")
 	print("secret code: " + str(new_array))
 	for d in new_array.split(' '):
 		intd = int(d)
 		index = alpha[intd]
 		de_array.append(index)
-
-
 	output = ''.join(de_array)
 	print(output)
+
+try:
+	if len(sys.argv) == 3:
+		if sys.argv[1].casefold() in ["s", "d", "scramble", "descramble"] and os.path.isfile(sys.argv[2]):
+			if sys.argv[1].casefold() in ["s", "scramble"]:
+				f = open(sys.argv[2], 'r')
+				text = f.read()
+				scramble(text, sys.argv[2])
+			else:
+				#LOGIC FOR DESCRAMBLE
+		else:
+			print("It seems that you did not use 's' or 'd' as the first argument.")
+			print("Correct syntax example: py scramble.py s <file_path>")
+except:
+	print("Code has exited for some unknown reason. This is still being implemented.")
+
+
 
 option = input("Do you want to [S]cramble or [D]escramble? ")
 if option == "scramble" or option == "S":
