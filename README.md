@@ -1,6 +1,6 @@
-# python-scramble
+# python-scramble-ng
 
-This uses a very simply cipher list to translate each letter of a text file into a list of numbers, and is also able to de-scramable the cipher to translate back to English. If you understand that arrays start at 0, it is a very simply cipher, where the number at the index of the character matched within the array is used as the key for each character in the return file.
+Python-scramble-ng is a fork of python-scramble by twstewart42, which is abandoned. This fork aims to fix it to work with the latest versions of the python language while also adding a few preferences of my own, like using command-line arguments instead of inputs, fixing some bugs and unhandled exceptions
 
 <pre>
 &gt;dir
