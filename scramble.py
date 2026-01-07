@@ -42,37 +42,28 @@ def descramble(text):
 	output = ''.join(de_array)
 	print(output)
 
+def fancy_exit(text):
+	print(text)
+	sys.exit()
+
 try:
-	if len(sys.argv) == 3:
-		if sys.argv[1].casefold() in ["s", "d", "scramble", "descramble"] and os.path.isfile(sys.argv[2]):
-			if sys.argv[1].casefold() in ["s", "scramble"]:
-				f = open(sys.argv[2], 'r')
-				text = f.read()
-				scramble(text, sys.argv[2])
-			else:
-				#LOGIC FOR DESCRAMBLE
-		else:
-			print("It seems that you did not use 's' or 'd' as the first argument.")
-			print("Correct syntax example: py scramble.py s <file_path>")
+	if not len(sys.argv) == 3:
+       fancy_exit("You need to provide exactly two arguments.")
+	if not sys.argv[1].casefold() in ["s", "d", "scramble", "descramble"]
+	   fancy_exit("The first argument needs to be 's', 'd', 'scramble' or 'descranble'")
+	if not os.path.isfile(sys.argv[2]):
+	   fancy_exit("The secound argument must be a valid file path.")
+	if sys.argv[1].casefold() in ["s", "scramble"]:
+		f = open(sys.argv[2], 'r')
+		text = f.read()
+		scramble(text, sys.argv[2])
+	else:
+		F = open(sys.argv[2], 'r')
+		text = []
+		text = F.read()
+		descramble(sys.argv[2], 'r')
+				
 except:
-	print("Code has exited for some unknown reason. This is still being implemented.")
-
-
-
-option = input("Do you want to [S]cramble or [D]escramble? ")
-if option == "scramble" or option == "S":
-	file_scram = input("name of file to scramble: ")
-	f = open(file_scram, 'r')
-	text = f.read()
-	scramble(text, file_scram)
-elif option == "descramble" or option == "D":
-	file_scram = input("name of the file to descramble: ")
-	F = open(file_scram, 'r')
-	text = []
-	text = F.read()
-	#print "text input: " + str(text)
-	descramble(text)
-else:
-	#descramble(text)
-	sys.exit(0)
+	fancy_exit("Code has exited for some unknown reason. This is still being implemented.")
+	
 
