@@ -49,8 +49,8 @@ def fancy_exit(text):
 try:
 	if not len(sys.argv) == 3:
        fancy_exit("You need to provide exactly two arguments.")
-	if not sys.argv[1].casefold() in ["s", "d", "scramble", "descramble"]
-	   fancy_exit("The first argument needs to be 's', 'd', 'scramble' or 'descranble'")
+	if not sys.argv[1].casefold() in ["s", "d", "scramble", "descramble"]:
+	   fancy_exit("The first argument needs to be 's', 'd', 'scramble' or 'descramble'")
 	if not os.path.isfile(sys.argv[2]):
 	   fancy_exit("The secound argument must be a valid file path.")
 	if sys.argv[1].casefold() in ["s", "scramble"]:
@@ -61,7 +61,7 @@ try:
 		F = open(sys.argv[2], 'r')
 		text = []
 		text = F.read()
-		descramble(sys.argv[2], 'r')
+		descramble(text)
 				
 except:
 	fancy_exit("Code has exited for some unknown reason. This is still being implemented.")
