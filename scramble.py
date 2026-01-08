@@ -1,6 +1,8 @@
 import os, sys
 
 #text = raw_input("Write a phrase: ")
+mode = sys.argv[1].casefold()
+path = sys.argv[2]
 text_array = []
 edit_array = []
 new_array = []
@@ -47,13 +49,13 @@ def fancy_exit(text):
 	sys.exit()
 
 try:
-	if not len(sys.argv) == 3:
+	if len(sys.argv) != 3:
        fancy_exit("You need to provide exactly two arguments.")
-	if not sys.argv[1].casefold() in ["s", "d", "scramble", "descramble"]:
+	if mode not in ["s", "d", "scramble", "descramble"]:
 	   fancy_exit("The first argument needs to be 's', 'd', 'scramble' or 'descramble'")
-	if not os.path.isfile(sys.argv[2]):
+	if not os.path.isfile(path):
 	   fancy_exit("The secound argument must be a valid file path.")
-	if sys.argv[1].casefold() in ["s", "scramble"]:
+	if mode in ["s", "scramble"]:
 		f = open(sys.argv[2], 'r')
 		text = f.read()
 		scramble(text, sys.argv[2])
@@ -63,7 +65,7 @@ try:
 		text = F.read()
 		descramble(text)
 				
-except:
-	fancy_exit("Code has exited for some unknown reason. This is still being implemented.")
+except IndexError:
+	fancy_exit("IndexError.")
 	
 
